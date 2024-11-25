@@ -22,6 +22,7 @@ class SectionResource extends Resource
     protected static ?string $model = Section::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationGroup = 'Academic Manegment';
 
     public static function form(Form $form): Form
     {

@@ -29,7 +29,14 @@ class StudentResource extends Resource
 {
     protected static ?string $model = Student::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationIcon = 'heroicon-o-academic-cap';
+    protected static ?string $navigationGroup = 'Academic Manegment';
+
+    public static function getNavigationBadge(): ?string
+    {
+        return static::$model::count();
+    }
+
 
     public static function form(Form $form): Form
     {
