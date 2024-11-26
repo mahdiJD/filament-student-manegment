@@ -8,12 +8,14 @@ use App\Models\Classes;
 use Filament\Forms;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
+use Filament\Forms\Get;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+use Illuminate\Validation\Rules\Unique;
 
 class ClassesResource extends Resource
 {
@@ -27,6 +29,10 @@ class ClassesResource extends Resource
         return $form
             ->schema([
                 TextInput::make('name')
+                ->required()
+                ->unique(ignoreRecord:true, modifyRuleUsing: function(Get $get, Unique $rule): Unique{
+                    return $rule->where('class_id', $get('class_id'));
+                }),
             ]);
     }
 
