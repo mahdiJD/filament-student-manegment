@@ -8,6 +8,7 @@ use App\Filament\Resources\StudentResource\RelationManagers;
 use App\Models\Classes;
 use App\Models\Section;
 use App\Models\Student;
+use Filament\Tables\Actions\Action;
 use Filament\Forms;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
@@ -94,6 +95,9 @@ class StudentResource extends Resource
                 }),
             ])
             ->actions([
+                Action::make('downloadPdf')->url(function(Student $student){
+                    return route('student.invo.generat', $student);
+                }),
                 Tables\Actions\EditAction::make(),
             ])
             ->bulkActions([
